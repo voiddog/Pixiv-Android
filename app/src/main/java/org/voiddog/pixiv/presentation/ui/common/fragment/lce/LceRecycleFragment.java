@@ -20,11 +20,11 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import rx.Observable;
 
 /**
  * 下拉刷新 底部加载更多 Fragment
- * 需要子类提供注入 {@link RecyclerView}, {@link android.support.v7.widget.RecyclerView.LayoutManager}
+ * 需要子类提供注入 {@link android.support.v7.widget.RecyclerView.Adapter},
+ * {@link android.support.v7.widget.RecyclerView.LayoutManager}, {@link ILceDataHelper}
  * Created by qigengxin on 16/8/26.
  */
 public abstract class LceRecycleFragment<M, V extends MvpLceView<M>, P extends MvpLceRxPresenter<M, V>>
@@ -32,7 +32,7 @@ public abstract class LceRecycleFragment<M, V extends MvpLceView<M>, P extends M
 
     @BindView(R.id.pb_loading)
     ProgressBar mPbLoading;
-    @BindView(R.id.pb_loading)
+    @BindView(R.id.tv_error)
     TextView mTvError;
     @BindView(R.id.srl_lce)
     SwipeRefreshLayout mSrlLce;
@@ -107,15 +107,6 @@ public abstract class LceRecycleFragment<M, V extends MvpLceView<M>, P extends M
     public void addData(M data) {
         mDataHelper.addData(data);
     }
-
-    @Override
-    public void loadData(boolean pullToRefresh) {
-        getPresenter().subscribe(
-                getRequestObservable(true), pullToRefresh
-        );
-    }
-
-    public abstract Observable<M> getRequestObservable(boolean reload);
 
     class RefreshListenerImpl implements SwipeRefreshLayout.OnRefreshListener{
 

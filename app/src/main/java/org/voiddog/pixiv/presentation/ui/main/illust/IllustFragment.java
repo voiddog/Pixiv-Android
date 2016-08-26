@@ -1,9 +1,9 @@
 package org.voiddog.pixiv.presentation.ui.main.illust;
 
+import android.os.Bundle;
+
 import org.voiddog.pixiv.data.model.RankingModel;
 import org.voiddog.pixiv.presentation.ui.common.fragment.lce.LceRecycleFragment;
-
-import rx.Observable;
 
 /**
  *
@@ -12,8 +12,9 @@ import rx.Observable;
 public class IllustFragment extends LceRecycleFragment<RankingModel, IllustView, IllustPresenter>{
 
     @Override
-    public Observable<RankingModel> getRequestObservable(boolean reload) {
-        return null;
+    public void onCreate(Bundle savedInstanceState) {
+
+        super.onCreate(savedInstanceState);
     }
 
     @Override
@@ -21,4 +22,8 @@ public class IllustFragment extends LceRecycleFragment<RankingModel, IllustView,
         return null;
     }
 
+    @Override
+    public void loadData(boolean pullToRefresh) {
+
+    }
 }
