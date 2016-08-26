@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PullToZoomView">
+        <attr name="headerView" format="reference" />
+        <attr name="contentView" format="reference" />
+        <attr name="zoomView" format="reference" />
+        <attr name="isHeaderParallax" format="boolean" />
+    </declare-styleable>
+    <!--分割线-->
+    <declare-styleable name="DivideLineView">
+        <attr name="divide_orientation" format="enum">
+            <enum name="bottom" value="1" />
+            <enum name="top" value="2" />
+        </attr>
+        <attr name="divide_color" format="color"/>
+    </declare-styleable>
+    <!--圆角按钮-->
+    <declare-styleable name="RoundCornerButton">
+        <!--描边属性-->
+        <attr name="round_stroke_width" format="dimension" />
+        <attr name="round_stroke_color" format="color" />
+        <!--按钮默认背景色-->
+        <attr name="round_btn_bg" format="color" />
+        <!--手指按下，波纹色-->
+        <attr name="round_btn_active_bg" format="color" />
+        <!--不可用背景色-->
+        <attr name="round_btn_disable_bg" format="color" />
+        <attr name="round_btn_disable_text_color" format="color" />
+        <!--圆角大小-->
+        <attr name="round_btn_radio_size" format="dimension" />
+    </declare-styleable>
+</resources>

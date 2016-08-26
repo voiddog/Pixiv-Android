@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00ffffff</color>
+    <!-- google color-->
+    <color name="google_red">#ed412c</color>
+    <color name="google_blue">#3e82f7</color>
+    <color name="google_yellow">#fdbd00</color>
+    <color name="google_green">#2ca94f</color>
+</resources>

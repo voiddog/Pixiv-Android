@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pixiv</string>
+    
+    <string name="main_title">主页</string>
+    <string name="main_tab_illusts">插画</string>
+    <string name="main_tab_manga">漫画</string>
+</resources>
