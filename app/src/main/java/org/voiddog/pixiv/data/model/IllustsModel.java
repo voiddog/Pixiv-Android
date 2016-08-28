@@ -17,7 +17,7 @@ public class IllustsModel {
     public String type;
 
     @SerializedName("image_urls")
-    public List<String> imageUrls;
+    public ImageUrlModel imageUrls;
     // 描述
     public String caption;
     // 限制 ?
@@ -25,7 +25,7 @@ public class IllustsModel {
     // 标签列表
     public List<TagModel> tags;
     // 使用什么工具画的
-    public String tools;
+    public List<String> tools;
     // 创建时间
     @SerializedName("create_data")
     public String createData;
@@ -44,7 +44,7 @@ public class IllustsModel {
     public PageModel metaSinglePage;
     // 多图 多张
     @SerializedName("meta_pages")
-    public PageModel metaPages;
+    public List<PageModel> metaPages;
     // 总浏览量
     @SerializedName("total_view")
     public long totalView;

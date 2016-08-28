@@ -6,5 +6,5 @@
 
     <color name="main_tab_txt_normal">@color/colorPrimaryDark</color>
     <color name="main_tab_txt_active">#fff</color>
-    <color name="main_tab_indicator">@color/colorPrimaryDark</color>
+    <color name="main_tab_indicator">#fff</color>
 </resources>

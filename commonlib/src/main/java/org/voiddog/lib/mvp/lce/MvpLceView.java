@@ -46,10 +46,10 @@ public interface MvpLceView<M> extends MvpView {
 
     /**
      * Display a loading view while loading data in background.
-     * @param pullToRefresh true, if pull-to-refresh has been invoked loading.
+     * @param showLoading true, if pull-to-refresh has been invoked loading.
      */
     @UiThread
-    void showLoading(boolean pullToRefresh);
+    void showLoading(boolean showLoading);
 
     /**
      * Show the content view.
@@ -61,11 +61,11 @@ public interface MvpLceView<M> extends MvpView {
     /**
      * Show the error view.
      * @param e The Throwable that has caused this error
-     * @param pullToRefresh true, if the exception was thrown during pull-to-refresh, otherwise
+     * @param showPageError true, if the exception was thrown during pull-to-refresh, otherwise
      * false.
      */
     @UiThread
-    void showError(Throwable e, boolean pullToRefresh);
+    void showError(Throwable e, boolean showPageError);
 
     /**
      * The data that should be displayed with {@link #showContent()}

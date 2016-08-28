@@ -2,6 +2,8 @@ package org.voiddog.lib.net;
 
 import android.annotation.SuppressLint;
 
+import org.voiddog.lib.net.intercept.LoggerIntercept;
+
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
@@ -19,6 +21,7 @@ import javax.net.ssl.X509TrustManager;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -47,6 +50,7 @@ public class NetCore {
         if(configuration.isDebug()){
             builder.sslSocketFactory(createSSLSocketFactory(), new TrustAllManager());
             builder.hostnameVerifier(new TrustAllHostVerifier());
+            builder.addInterceptor(new LoggerIntercept());
         }
 
         mOkHttpClient = builder.build();
@@ -54,6 +58,7 @@ public class NetCore {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(configuration.getHost())
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(mOkHttpClient)
                 .build();
     }

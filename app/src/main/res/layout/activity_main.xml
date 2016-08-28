@@ -14,7 +14,7 @@
             android:id="@+id/tool_bar"
             app:title="@string/main_title"
             app:titleTextColor="@android:color/white"
-            app:layout_scrollFlags="scroll|snap"
+            app:layout_scrollFlags="scroll|snap|enterAlways"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"/>
 
@@ -31,6 +31,7 @@
 
     <FrameLayout
         android:id="@+id/fra_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

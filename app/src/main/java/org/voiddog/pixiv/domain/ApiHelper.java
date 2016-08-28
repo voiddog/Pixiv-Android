@@ -6,6 +6,7 @@ import org.voiddog.lib.net.NetCore;
 import org.voiddog.pixiv.data.api.IllustsApi;
 import org.voiddog.pixiv.domain.interceptor.LoginHeaderInterceptor;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import retrofit2.Retrofit;
@@ -19,7 +20,7 @@ public class ApiHelper {
     private static final String AUTH_HOST = "https://oauth.secure.pixiv.net";
 
     private NetCore mAppNetCore;
-    private Map<Class, Object> mApiCache;
+    private Map<Class, Object> mApiCache = new HashMap<>();
 
     public ApiHelper(){}
 
@@ -42,7 +43,7 @@ public class ApiHelper {
     }
 
     private Retrofit getAppRetrofit(){
-        if(mAppNetCore != null){
+        if(mAppNetCore == null){
             mAppNetCore = new NetCore(NetConfiguration.newBuilder()
                     .setHost(APP_HOST)
                     .setDebug(true)

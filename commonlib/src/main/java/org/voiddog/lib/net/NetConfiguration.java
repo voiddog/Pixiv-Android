@@ -39,6 +39,7 @@ public class NetConfiguration {
         mConnectionTimeout = builder.getConnectionTimeout();
         mReadTimeout = builder.getReadTimeout();
         mWriteTimeout = builder.getWriteTimeout();
+        mHost = builder.getHost();
     }
 
     public static Builder newBuilder() {

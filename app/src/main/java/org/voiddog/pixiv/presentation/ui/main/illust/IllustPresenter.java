@@ -1,19 +1,59 @@
 package org.voiddog.pixiv.presentation.ui.main.illust;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import org.voiddog.lib.mvp.lce.MvpLceRxPresenter;
+import org.voiddog.pixiv.data.api.IllustsApi;
 import org.voiddog.pixiv.data.model.RankingModel;
+import org.voiddog.pixiv.presentation.ui.common.activity.base.ForActivity;
+
+import javax.inject.Inject;
+
+import rx.Observable;
 
 /**
  * Created by qigengxin on 16/8/26.
  */
 public class IllustPresenter extends MvpLceRxPresenter<RankingModel, IllustView>{
 
-    private Context mContext;
+    @Inject
+    @ForActivity
+    Context mContext;
 
-    public IllustPresenter(Context context){
-        mContext = context;
+    @Inject
+    IllustsApi mApi;
+
+    private String mNextUrl;
+
+    public void loadData(boolean refresh){
+        Observable<RankingModel> request = null;
+        if(refresh){
+            mNextUrl = null;
+            request = mApi.rankListWithoutLogin();
+            getView().showLoading(mNextUrl == null);
+        }
+        else if(TextUtils.isEmpty(mNextUrl)){
+            request = mApi.next(mNextUrl);
+            getView().showLoading(true);
+        }
+        if(request != null) {
+            subscribe(request, refresh && mNextUrl != null);
+        }
     }
 
+    @Override
+    protected void onNext(RankingModel data, boolean pullToRefresh) {
+        super.onNext(data, pullToRefresh);
+    }
+
+    @Override
+    protected void onCompleted() {
+        super.onCompleted();
+    }
+
+    @Override
+    protected void onError(Throwable e, boolean pullToRefresh) {
+        super.onError(e, pullToRefresh);
+    }
 }

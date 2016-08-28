@@ -6,28 +6,28 @@ import android.view.View;
 
 import org.voiddog.lib.ui.ResizeDraweeView;
 import org.voiddog.pixiv.R;
-import org.voiddog.pixiv.data.model.IllustsModel;
+import org.voiddog.pixiv.data.model.LabelIllustModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 小图 item view holder
- * Created by qigengxin on 16/8/26.
+ * 插画头部view
+ * Created by qgx44 on 2016/8/28.
  */
-public class IllustItemViewHolder extends RecyclerView.ViewHolder{
+public class IllustLabelHeadViewHolder extends RecyclerView.ViewHolder{
 
     @BindView(R.id.dv_img)
     ResizeDraweeView mDvImg;
 
-    IllustsModel mModel;
+    LabelIllustModel mModel;
 
-    public IllustItemViewHolder(View itemView) {
+    public IllustLabelHeadViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }
 
-    public void bindData(IllustsModel model){
+    public void bindData(LabelIllustModel model){
         mModel = model;
         if(model.imageUrls.medium != null){
             mDvImg.setImageURI(Uri.parse(model.imageUrls.medium));

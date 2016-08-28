@@ -1,8 +1,10 @@
 package org.voiddog.pixiv.presentation.ui.main.illust.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
+import org.voiddog.pixiv.R;
 import org.voiddog.pixiv.data.model.IllustsModel;
 import org.voiddog.pixiv.data.model.LabelIllustModel;
 import org.voiddog.pixiv.data.model.RankingModel;
@@ -25,12 +27,24 @@ public class IllustAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(viewType == TYPE_ILLUST){
+            return new IllustItemViewHolder(View.inflate(
+                    parent.getContext(), R.layout.item_like_img, null
+            ));
+        } else if (viewType == TYPE_LABEL){
+            return new IllustLabelHeadViewHolder(View.inflate(
+                    parent.getContext(), R.layout.item_label_head, null
+            ));
+        }
         return null;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
+        if(holder instanceof IllustItemViewHolder){
+            IllustItemViewHolder illustItemViewHolder = (IllustItemViewHolder) holder;
+            illustItemViewHolder.bindData((IllustsModel) mDataList.get(position));
+        }
     }
 
     @Override

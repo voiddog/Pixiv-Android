@@ -112,6 +112,7 @@ public abstract class LceRecycleFragment<M, V extends MvpLceView<M>, P extends M
 
         @Override
         public void onRefresh() {
+            mSrlLce.setRefreshing(false);
             loadData(true);
         }
     }

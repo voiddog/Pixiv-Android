@@ -70,8 +70,8 @@ public abstract class MvpLceActivity< M, V extends MvpLceView<M>, P extends MvpP
     }
 
 
-    @Override public void showLoading(boolean pullToRefresh) {
-        if (!pullToRefresh) {
+    @Override public void showLoading(boolean showLoading) {
+        if (!showLoading) {
             animateLoadingViewIn();
         }
         // otherwise the pull to refresh widget will already display a loading animation
@@ -150,11 +150,11 @@ public abstract class MvpLceActivity< M, V extends MvpLceView<M>, P extends MvpP
         loadData(false);
     }
 
-    @Override public void showError(Throwable e, boolean pullToRefresh) {
+    @Override public void showError(Throwable e, boolean showPageError) {
 
-        String errorMsg = getErrorMessage(e, pullToRefresh);
+        String errorMsg = getErrorMessage(e, showPageError);
 
-        if (pullToRefresh) {
+        if (showPageError) {
             showLightError(errorMsg);
         } else {
             showPageError(errorMsg);

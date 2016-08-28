@@ -2,8 +2,12 @@ package org.voiddog.pixiv.presentation.ui.main.illust;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 
+import org.voiddog.pixiv.data.api.IllustsApi;
 import org.voiddog.pixiv.data.model.RankingModel;
+import org.voiddog.pixiv.domain.ApiHelper;
+import org.voiddog.pixiv.presentation.ui.common.activity.base.ForActivity;
 import org.voiddog.pixiv.presentation.ui.common.fragment.base.FragmentScope;
 import org.voiddog.pixiv.presentation.ui.common.fragment.lce.ILceDataHelper;
 import org.voiddog.pixiv.presentation.ui.main.illust.adapter.IllustAdapter;
@@ -24,9 +28,23 @@ public class IllustModule {
     }
 
     @Provides
+    @ForActivity
+    Context provideActivityContext(){
+        return mContext;
+    }
+
+    @Provides
     @FragmentScope
-    IllustPresenter providePresenter(Context context){
-        return new IllustPresenter(context);
+    IllustsApi provideIllustsApi(ApiHelper helper){
+        return helper.getIllutsApi();
+    }
+
+    @Provides
+    @FragmentScope
+    IllustPresenter providePresenter(Context context, IllustComponent component){
+        IllustPresenter presenter = new IllustPresenter();
+        component.inject(presenter);
+        return presenter;
     }
 
     @Provides
@@ -45,5 +63,10 @@ public class IllustModule {
     @FragmentScope
     ILceDataHelper<RankingModel> provideLceDataHelper(IllustAdapter adapter){
         return adapter;
+    }
+
+    @Provides
+    RecyclerView.LayoutManager provideLayoutManager(){
+        return new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import org.voiddog.lib.mvp.MvpBasePresenter;
 import org.voiddog.pixiv.R;
 import org.voiddog.pixiv.presentation.ui.common.activity.base.ForActivity;
+import org.voiddog.pixiv.presentation.ui.main.illust.IllustFragment;
 
 import javax.inject.Inject;
 
@@ -18,9 +19,8 @@ public class MainPresenter extends MvpBasePresenter<MainView> {
     @ForActivity
     Context mContext;
 
-    public MainPresenter(MainComponent component){
-        component.inject(this);
-    }
+    @Inject
+    IllustFragment mIllFragment;
 
     public void init(Bundle saveInstance){
         if(!isViewAttached()){
@@ -31,5 +31,8 @@ public class MainPresenter extends MvpBasePresenter<MainView> {
                 mContext.getResources().getString(R.string.main_tab_illusts),
                 mContext.getResources().getString(R.string.main_tab_manga)
         });
+
+        // 默认显示第一页
+        getView().setContentFragment(mIllFragment, 1);
     }
 }

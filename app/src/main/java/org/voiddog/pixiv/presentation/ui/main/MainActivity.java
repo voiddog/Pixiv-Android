@@ -69,13 +69,14 @@ public class MainActivity extends BaseMvpActivity<MainView, MainPresenter>
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
         boolean found = false;
-        for(Fragment fra : fragmentList){
-            if(fra == fragment){
-                transaction.show(fra);
-                found = true;
-            }
-            else{
-                transaction.hide(fra);
+        if(fragmentList != null) {
+            for (Fragment fra : fragmentList) {
+                if (fra == fragment) {
+                    transaction.show(fra);
+                    found = true;
+                } else {
+                    transaction.hide(fra);
+                }
             }
         }
 
