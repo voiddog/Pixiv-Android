@@ -7,6 +7,8 @@
     <org.voiddog.pixiv.presentation.ui.common.view.PixivDraweeView
         android:id="@+id/dv_img"
         app:viewAspectRatio="1.7"
+        app:placeholderImage="@color/draweePlaceHolder"
+        app:actualImageScaleType="centerCrop"
         app:pixiv_large_level="large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

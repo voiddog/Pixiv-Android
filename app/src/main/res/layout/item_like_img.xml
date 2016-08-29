@@ -8,6 +8,8 @@
         android:id="@+id/dv_img"
         app:viewAspectRatio="1"
         app:pixiv_large_level="medium"
+        app:placeholderImage="@color/draweePlaceHolder"
+        app:actualImageScaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

@@ -31,21 +31,21 @@ public abstract class LceRecycleFragment<M, V extends MvpLceView<M>, P extends M
         extends MvpLceFragment<M, V, P>{
 
     @BindView(R.id.pb_loading)
-    ProgressBar mPbLoading;
+    protected ProgressBar mPbLoading;
     @BindView(R.id.tv_error)
-    TextView mTvError;
+    protected TextView mTvError;
     @BindView(R.id.srl_lce)
-    SwipeRefreshLayout mSrlLce;
+    protected SwipeRefreshLayout mSrlLce;
     @BindView(R.id.rv_content)
-    RecyclerView mRvContent;
+    protected RecyclerView mRvContent;
     @Inject
-    RecyclerView.Adapter mAdapter;
+    protected RecyclerView.Adapter mAdapter;
     @Inject
-    RecyclerView.LayoutManager mLayoutManager;
+    protected RecyclerView.LayoutManager mLayoutManager;
     @Inject
-    P mPresenter;
+    protected P mPresenter;
     @Inject
-    ILceDataHelper<M> mDataHelper;
+    protected ILceDataHelper<M> mDataHelper;
 
     @Nullable
     @Override

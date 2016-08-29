@@ -47,6 +47,7 @@ public class PixivDraweeView extends BlurLoadDraweeView{
         );
 
         mSrcUriType = a.getInt(R.styleable.PixivDraweeView_pixiv_large_level, MEDIUM);
+        getHierarchy().setProgressBarImage(new PixivDraweeProcessBar(getContext()));
 
         a.recycle();
     }
