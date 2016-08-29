@@ -1,6 +1,5 @@
 package org.voiddog.lib.util;
 
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -34,13 +33,6 @@ public class ViewUtil {
             height = getImageViewFieldValue(view, "mMaxHeight");// 获得设置的最大的宽度
         }
 
-        //如果宽度还是没有获取到，憋大招，使用屏幕的宽度
-        if (height <= 0) {
-            DisplayMetrics displayMetrics = view.getContext().getResources()
-                    .getDisplayMetrics();
-            height = displayMetrics.heightPixels;
-        }
-
         return height;
     }
 
@@ -65,12 +57,6 @@ public class ViewUtil {
 
         if (width <= 0) {
             width = getImageViewFieldValue(view, "mMaxWidth");// 获得设置的最大的宽度
-        }
-        //如果宽度还是没有获取到，憋大招，使用屏幕的宽度
-        if (width <= 0) {
-            DisplayMetrics displayMetrics = view.getContext().getResources()
-                    .getDisplayMetrics();
-            width = displayMetrics.widthPixels;
         }
         return width;
     }

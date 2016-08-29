@@ -38,7 +38,7 @@ public class IllustPresenter extends MvpLceRxPresenter<RankingModel, IllustView>
             getView().showLoading(true);
         }
         if(request != null) {
-            subscribe(request, refresh && mNextUrl != null);
+            subscribe(request, refresh);
         }
     }
 

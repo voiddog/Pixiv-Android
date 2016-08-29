@@ -4,9 +4,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <org.voiddog.lib.ui.ResizeDraweeView
+    <org.voiddog.pixiv.presentation.ui.common.view.PixivDraweeView
         android:id="@+id/dv_img"
         app:viewAspectRatio="1.7"
+        app:pixiv_large_level="large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

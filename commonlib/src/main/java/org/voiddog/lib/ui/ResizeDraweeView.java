@@ -12,13 +12,15 @@ import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
-import org.voiddog.lib.util.ViewUtil;
 
 /**
- * 图片大小根据view的大小改变
+ * 默认图片大小根据view的大小改变
  * Created by voiddog on 2015/10/20.
  */
 public class ResizeDraweeView extends SimpleDraweeView{
+
+    private Uri mLazyUri;
+
     public ResizeDraweeView(Context context, GenericDraweeHierarchy hierarchy) {
         super(context, hierarchy);
     }
@@ -35,17 +37,40 @@ public class ResizeDraweeView extends SimpleDraweeView{
         super(context, attrs, defStyle);
     }
 
-    @Override
-    public void setImageURI(Uri uri, Object callerContext) {
+    public void setImageURIWithSize(Uri uri, int width, int height){
         ImageRequest imageRequest = ImageRequestBuilder.newBuilderWithSource(uri)
-                .setResizeOptions(new ResizeOptions(ViewUtil.getExpectWidth(this), ViewUtil.getExpectHeight(this)))
+                .setResizeOptions(new ResizeOptions(width, height))
                 .setAutoRotateEnabled(true)
                 .build();
         PipelineDraweeController controller = (PipelineDraweeController) Fresco.newDraweeControllerBuilder()
                 .setOldController(getController())
                 .setImageRequest(imageRequest)
                 .build();
-        
+
         setController(controller);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        if(getMeasuredWidth() != 0 && getMeasuredHeight() != 0
+                && mLazyUri != null){
+            setImageURIWithSize(mLazyUri, getMeasuredWidth(), getMeasuredHeight());
+            mLazyUri = null;
+        }
+    }
+
+    @Override
+    public void setImageURI(Uri uri, Object callerContext) {
+        int width = getMeasuredWidth();
+        int height = getMeasuredHeight();
+
+        if(width == 0 || height == 0){
+            mLazyUri = uri;
+        }
+        else{
+            mLazyUri = null;
+            setImageURIWithSize(uri, width, height);
+        }
     }
 }

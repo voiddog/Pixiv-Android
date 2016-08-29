@@ -74,7 +74,7 @@ public class BlurUtil {
             res = BitmapFactory.decodeByteArray(outs, 0, outs.length, options);
             BlurUtil.blurWithRenderScript(view.getContext(), res, 12, true);
         } else {
-            res = BlurUtil.getBlurImage(viewCache, 1, 8);
+            res = BlurUtil.getFastBlurImage(viewCache, 1, 8);
         }
         Log.i("BlurView", "获取blur所需时间: +" + (System.currentTimeMillis() - startTime) + "ms");
         return res;
@@ -112,7 +112,7 @@ public class BlurUtil {
         return outBitmap;
     }
 
-    public static Bitmap getBlurImage(Bitmap in, float scaleFactor, int radius){
+    public static Bitmap getFastBlurImage(Bitmap in, float scaleFactor, int radius){
         Bitmap overlay = Bitmap.createBitmap((int) (in.getWidth()/scaleFactor),
                 (int) (in.getHeight()/scaleFactor), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(overlay);

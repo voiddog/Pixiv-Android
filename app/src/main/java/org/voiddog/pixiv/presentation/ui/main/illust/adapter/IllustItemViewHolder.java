@@ -1,12 +1,11 @@
 package org.voiddog.pixiv.presentation.ui.main.illust.adapter;
 
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import org.voiddog.lib.ui.ResizeDraweeView;
 import org.voiddog.pixiv.R;
 import org.voiddog.pixiv.data.model.IllustsModel;
+import org.voiddog.pixiv.presentation.ui.common.view.PixivDraweeView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,7 +17,7 @@ import butterknife.ButterKnife;
 public class IllustItemViewHolder extends RecyclerView.ViewHolder{
 
     @BindView(R.id.dv_img)
-    ResizeDraweeView mDvImg;
+    PixivDraweeView mDvImg;
 
     IllustsModel mModel;
 
@@ -29,11 +28,6 @@ public class IllustItemViewHolder extends RecyclerView.ViewHolder{
 
     public void bindData(IllustsModel model){
         mModel = model;
-        if(model.imageUrls.medium != null){
-            mDvImg.setImageURI(Uri.parse(model.imageUrls.medium));
-        }
-        else if(model.imageUrls.large != null){
-            mDvImg.setImageURI(Uri.parse(model.imageUrls.large));
-        }
+        mDvImg.applyImageUrlModel(model.imageUrls);
     }
 }

@@ -1,6 +1,7 @@
 package org.voiddog.pixiv.presentation.ui.main.illust.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -44,6 +45,9 @@ public class IllustAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if(holder instanceof IllustItemViewHolder){
             IllustItemViewHolder illustItemViewHolder = (IllustItemViewHolder) holder;
             illustItemViewHolder.bindData((IllustsModel) mDataList.get(position));
+        } else if (holder instanceof IllustLabelHeadViewHolder){
+            IllustLabelHeadViewHolder illustLabelHeadViewHolder = (IllustLabelHeadViewHolder) holder;
+            illustLabelHeadViewHolder.bindData((LabelIllustModel) mDataList.get(position));
         }
     }
 

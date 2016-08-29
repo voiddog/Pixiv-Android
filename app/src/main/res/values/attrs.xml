@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PixivDraweeView">
+        <attr name="pixiv_large_level" format="enum">
+            <enum name="medium" value="1"/>
+            <enum name="large" value="2"/>
+        </attr>
+    </declare-styleable>
+</resources>
