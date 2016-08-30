@@ -44,7 +44,7 @@ public abstract class MvpLceRxPresenter<M, V extends MvpLceView<M>>
     /**
      * Unsubscribes the subscriber and set it to null
      */
-    protected void unsubscribe() {
+    public void unsubscribe() {
         if (subscriber != null && !subscriber.isUnsubscribed()) {
             subscriber.unsubscribe();
         }

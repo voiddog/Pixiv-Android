@@ -1,5 +1,44 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- 字号 -->
+    <!--40号字-->
+    <dimen name="font_40">20sp</dimen>
+    <!-- 36号字 -->
+    <dimen name="font_36">18sp</dimen>
+    <!-- 34号字 -->
+    <dimen name="font_34">17sp</dimen>
+    <!-- 32号字 -->
+    <dimen name="font_32">16sp</dimen>
+    <!-- 30号字 -->
+    <dimen name="font_30">15sp</dimen>
+    <!-- 28号字 -->
+    <dimen name="font_28">14sp</dimen>
+    <dimen name="font_26">13sp</dimen>
+    <!-- 24号字 -->
+    <dimen name="font_24">12sp</dimen>
+    <!-- 22号字 -->
+    <dimen name="font_22">11sp</dimen>
+    <!-- 20号字 -->
+    <dimen name="font_20">10sp</dimen>
+    <!-- 18号字 -->
+    <dimen name="font_18">9sp</dimen>
+
+    <!--间距 -->
+    <dimen name="space_130">65dp</dimen>
+    <dimen name="space_100">50dp</dimen>
+    <dimen name="space_70">35dp</dimen>
+    <dimen name="space_50">25dp</dimen>
+    <dimen name="space_44">22dp</dimen>
+    <dimen name="space_40">20dp</dimen>
+    <dimen name="space_34">17dp</dimen>
+    <dimen name="space_32">16dp</dimen>
+    <dimen name="space_30">15dp</dimen>
+    <dimen name="space_24">12dp</dimen>
+    <dimen name="space_20">10dp</dimen>
+    <dimen name="space_16">8dp</dimen>
+    <dimen name="space_14">7dp</dimen>
+    <dimen name="space_12">6dp</dimen>
+    <dimen name="space_10">5dp</dimen>
+    <dimen name="space_8">4dp</dimen>
+    <dimen name="space_6">3dp</dimen>
+
 </resources>

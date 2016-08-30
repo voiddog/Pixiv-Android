@@ -16,8 +16,8 @@ import retrofit2.Retrofit;
  * Created by qigengxin on 16/8/26.
  */
 public class ApiHelper {
-    private static final String APP_HOST = "https://app-api.pixiv.net";
-    private static final String AUTH_HOST = "https://oauth.secure.pixiv.net";
+    public static final String APP_HOST = "https://app-api.pixiv.net";
+    public static final String AUTH_HOST = "https://oauth.secure.pixiv.net";
 
     private NetCore mAppNetCore;
     private Map<Class, Object> mApiCache = new HashMap<>();

@@ -13,4 +13,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/TextShadowStyle"
+        android:drawableLeft="@drawable/ic_home_ranking"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textColor="@android:color/white"
+        android:drawablePadding="@dimen/space_12"
+        android:layout_margin="@dimen/space_20"
+        android:textSize="@dimen/font_32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        style="@style/TextShadowStyle"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:textSize="@dimen/font_32"
+        android:textColor="@android:color/white"
+        android:drawableRight="@drawable/ic_ranking_more_arrow"
+        android:layout_margin="@dimen/space_20"
+        android:layout_alignBottom="@id/dv_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>

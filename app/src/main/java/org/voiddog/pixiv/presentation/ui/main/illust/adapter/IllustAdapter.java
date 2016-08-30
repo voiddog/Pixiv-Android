@@ -26,8 +26,16 @@ public class IllustAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     List<Object> mDataList = new ArrayList<>();
 
+    StaggeredGridLayoutManager mLayoutManager;
+
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if(parent instanceof RecyclerView){
+            RecyclerView recyclerView = (RecyclerView) parent;
+            if(recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager){
+                mLayoutManager = (StaggeredGridLayoutManager) recyclerView.getLayoutManager();
+            }
+        }
         if(viewType == TYPE_ILLUST){
             return new IllustItemViewHolder(View.inflate(
                     parent.getContext(), R.layout.item_like_img, null
@@ -88,5 +96,24 @@ public class IllustAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             mDataList.add(model);
         }
         notifyDataSetChanged();
+    }
+
+    int[] lastVisiblePosition;
+
+    @Override
+    public boolean isNeedLoadMore() {
+        if(mLayoutManager != null){
+            if(lastVisiblePosition == null
+                    || lastVisiblePosition.length != mLayoutManager.getSpanCount()){
+                lastVisiblePosition = new int[mLayoutManager.getSpanCount()];
+            }
+            mLayoutManager.findLastVisibleItemPositions(lastVisiblePosition);
+            for(int position : lastVisiblePosition){
+                if(position == getItemCount() - 1){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

@@ -34,6 +34,10 @@ public class StringUtil {
         return m.matches();
     }
 
+    public static String getPathWithArgs(String url){
+        return url.replaceFirst("^((https|http|ftp|rtsp|mms)?:\\/\\/)[^/]+/", "");
+    }
+
     /**
      * string产生int
      * @param s 原始字符串

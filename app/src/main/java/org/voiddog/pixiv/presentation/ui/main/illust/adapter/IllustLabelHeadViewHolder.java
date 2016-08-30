@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.voiddog.pixiv.R;
 import org.voiddog.pixiv.data.model.LabelIllustModel;
@@ -20,6 +21,10 @@ public class IllustLabelHeadViewHolder extends RecyclerView.ViewHolder{
 
     @BindView(R.id.dv_img)
     PixivDraweeView mDvImg;
+    @BindView(R.id.tv_title)
+    TextView mTvTitle;
+    @BindView(R.id.tv_name)
+    TextView mTvName;
 
     LabelIllustModel mModel;
 
@@ -32,10 +37,12 @@ public class IllustLabelHeadViewHolder extends RecyclerView.ViewHolder{
         itemView.setLayoutParams(layoutParams);
 
         ButterKnife.bind(this, itemView);
+        mTvTitle.setText("插画每日排行榜");
     }
 
     public void bindData(LabelIllustModel model){
         mModel = model;
         mDvImg.applyImageUrlModel(model.imageUrls);
+        mTvName.setText(model.title);
     }
 }

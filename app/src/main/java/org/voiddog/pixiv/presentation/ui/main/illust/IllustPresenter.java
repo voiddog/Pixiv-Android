@@ -33,9 +33,9 @@ public class IllustPresenter extends MvpLceRxPresenter<RankingModel, IllustView>
             request = mApi.rankListWithoutLogin();
             getView().showLoading(mNextUrl == null);
         }
-        else if(TextUtils.isEmpty(mNextUrl)){
+        else if(!TextUtils.isEmpty(mNextUrl)){
             request = mApi.next(mNextUrl);
-            getView().showLoading(true);
+            getView().showLoading(false);
         }
         if(request != null) {
             subscribe(request, refresh);
@@ -44,16 +44,12 @@ public class IllustPresenter extends MvpLceRxPresenter<RankingModel, IllustView>
 
     @Override
     protected void onNext(RankingModel data, boolean pullToRefresh) {
+        if(!TextUtils.isEmpty(data.nextUrl)){
+            mNextUrl = data.nextUrl;
+        }
+        else{
+            mNextUrl = null;
+        }
         super.onNext(data, pullToRefresh);
-    }
-
-    @Override
-    protected void onCompleted() {
-        super.onCompleted();
-    }
-
-    @Override
-    protected void onError(Throwable e, boolean pullToRefresh) {
-        super.onError(e, pullToRefresh);
     }
 }

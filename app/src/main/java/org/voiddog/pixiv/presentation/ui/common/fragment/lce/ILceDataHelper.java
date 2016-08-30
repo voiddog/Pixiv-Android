@@ -16,4 +16,9 @@ public interface ILceDataHelper<M> {
      * @param data
      */
     void setData(M data);
+
+    /**
+     * 是否需要加载更多数据
+     */
+    boolean isNeedLoadMore();
 }

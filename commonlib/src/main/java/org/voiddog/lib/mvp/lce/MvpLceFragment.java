@@ -159,7 +159,7 @@ public abstract class MvpLceFragment<M, V extends MvpLceView<M>, P extends MvpPr
      * <code>errorView.setClickable(false)</code>
      */
     protected void onErrorViewClicked() {
-        loadData(false);
+        loadData(true);
     }
 
     @Override public void showError(Throwable e, boolean showPageError) {
@@ -167,10 +167,10 @@ public abstract class MvpLceFragment<M, V extends MvpLceView<M>, P extends MvpPr
         String errorMsg = getErrorMessage(e, showPageError);
 
         if (showPageError) {
-            showLightError(errorMsg);
-        } else {
             showPageError(errorMsg);
             animateErrorViewIn();
+        } else {
+            showLightError(errorMsg);
         }
     }
 
