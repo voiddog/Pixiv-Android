@@ -3,10 +3,14 @@ package org.voiddog.pixiv.presentation.ui.main.illust;
 import android.content.Context;
 import android.text.TextUtils;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.voiddog.lib.mvp.lce.MvpLceRxPresenter;
 import org.voiddog.pixiv.data.api.IllustsApi;
 import org.voiddog.pixiv.data.model.RankingModel;
+import org.voiddog.pixiv.domain.ApiManager;
 import org.voiddog.pixiv.presentation.ui.common.activity.base.ForActivity;
+import org.voiddog.pixiv.presentation.ui.common.event.IllustsBookmarkEvent;
 
 import javax.inject.Inject;
 
@@ -25,6 +29,20 @@ public class IllustPresenter extends MvpLceRxPresenter<RankingModel, IllustView>
     IllustsApi mApi;
 
     private String mNextUrl;
+
+    public IllustPresenter(){
+        EventBus.getDefault().register(this);
+    }
+
+    @Subscribe
+    public void onEvent(IllustsBookmarkEvent event){
+    }
+
+    @Override
+    public void onDestory() {
+        super.onDestory();
+        EventBus.getDefault().unregister(this);
+    }
 
     public void loadData(boolean refresh){
         Observable<RankingModel> request = null;

@@ -53,10 +53,16 @@ public class ResizeDraweeView extends SimpleDraweeView{
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if(getMeasuredWidth() != 0 && getMeasuredHeight() != 0
-                && mLazyUri != null){
-            setImageURIWithSize(mLazyUri, getMeasuredWidth(), getMeasuredHeight());
+        if(getMeasuredWidth() != 0 && getMeasuredHeight() != 0){
+            updateLazyUri();
+        }
+    }
+
+    public void updateLazyUri(){
+        if(mLazyUri != null){
+            Uri uri = mLazyUri;
             mLazyUri = null;
+            setImageURIWithSize(uri, getMeasuredWidth(), getMeasuredHeight());
         }
     }
 

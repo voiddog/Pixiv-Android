@@ -15,14 +15,14 @@ import retrofit2.Retrofit;
  * Retrofit管理类
  * Created by qigengxin on 16/8/26.
  */
-public class ApiHelper {
+public class ApiManager {
     public static final String APP_HOST = "https://app-api.pixiv.net";
     public static final String AUTH_HOST = "https://oauth.secure.pixiv.net";
 
     private NetCore mAppNetCore;
     private Map<Class, Object> mApiCache = new HashMap<>();
 
-    public ApiHelper(){}
+    public ApiManager(){}
 
     public void login(String token){
         mApiCache.clear();

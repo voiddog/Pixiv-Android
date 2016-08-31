@@ -34,6 +34,8 @@ public abstract class LceRecycleFragment<M, V extends MvpLceView<M>, P extends M
     protected ProgressBar mPbLoading;
     @BindView(R.id.tv_error)
     protected TextView mTvError;
+    @BindView(R.id.vg_error)
+    protected ViewGroup mVgError;
     @BindView(R.id.srl_lce)
     protected SwipeRefreshLayout mSrlLce;
     @BindView(R.id.rv_content)
@@ -92,7 +94,7 @@ public abstract class LceRecycleFragment<M, V extends MvpLceView<M>, P extends M
 
     @Override
     protected View createErrorView() {
-        return mTvError;
+        return mVgError;
     }
 
     @Override

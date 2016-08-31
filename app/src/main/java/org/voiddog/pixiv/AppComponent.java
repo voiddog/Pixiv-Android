@@ -2,7 +2,8 @@ package org.voiddog.pixiv;
 
 import android.content.Context;
 
-import org.voiddog.pixiv.domain.ApiHelper;
+import org.voiddog.pixiv.domain.ApiManager;
+import org.voiddog.pixiv.domain.BookmarkManager;
 
 import javax.inject.Singleton;
 
@@ -17,5 +18,7 @@ public interface AppComponent {
 
     Context getContext();
 
-    ApiHelper getApiHelper();
+    ApiManager getApiManager();
+
+    BookmarkManager getBookmarkManager();
 }

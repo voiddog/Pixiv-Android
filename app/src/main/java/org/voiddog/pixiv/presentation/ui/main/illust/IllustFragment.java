@@ -3,10 +3,7 @@ package org.voiddog.pixiv.presentation.ui.main.illust;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import org.voiddog.lib.ui.DrawableItemDecoration;
 import org.voiddog.lib.util.SizeUtil;
@@ -45,7 +42,7 @@ public class IllustFragment extends LceRecycleFragment<RankingModel, IllustView,
 
     @Override
     protected String getErrorMessage(Throwable e, boolean pullToRefresh) {
-        return e.getMessage();
+        return "网络错误";
     }
 
     @Override

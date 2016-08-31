@@ -43,11 +43,11 @@ public class BlurLoadDraweeView extends ResizeDraweeView{
     }
 
     @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        if(getMeasuredWidth() > 0 && getMeasuredHeight() > 0
-                && mLoadUri != null){
-            applyRequest(mLoadUri.smallUri, mLoadUri.largeUri);
+    public void updateLazyUri(){
+        if(mLoadUri != null){
+            LoadUri uri = mLoadUri;
+            mLoadUri = null;
+            applyRequest(uri.smallUri, uri.largeUri);
         }
     }
 
@@ -73,7 +73,7 @@ public class BlurLoadDraweeView extends ResizeDraweeView{
         super.setImageURI(uri);
     }
 
-    void applyRequest(Uri smallUri, Uri largeUri){
+    protected void applyRequest(Uri smallUri, Uri largeUri){
         if(smallUri == null
                 || smallUri.toString().equals(largeUri.toString())){
             super.setImageURI(largeUri);
@@ -89,14 +89,14 @@ public class BlurLoadDraweeView extends ResizeDraweeView{
         setController(controller);
     }
 
-    ImageRequest getBlurImageRequest(Uri uri){
+    protected ImageRequest getBlurImageRequest(Uri uri){
         return ImageRequestBuilder.newBuilderWithSource(uri)
                 .setPostprocessor(new BlurPostProcessor())
                 .setResizeOptions(new ResizeOptions(BLUR_SIZE, BLUR_SIZE))
                 .build();
     }
 
-    ImageRequest getResizeImageRequest(Uri uri, int width, int height){
+    protected ImageRequest getResizeImageRequest(Uri uri, int width, int height){
         return ImageRequestBuilder.newBuilderWithSource(uri)
                 .setResizeOptions(new ResizeOptions(width, height))
                 .build();
