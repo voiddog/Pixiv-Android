@@ -1,4 +1,4 @@
-package org.voiddog.pixiv.domain;
+package org.voiddog.pixiv.domain.manager;
 
 import android.content.Context;
 import android.content.SharedPreferences;

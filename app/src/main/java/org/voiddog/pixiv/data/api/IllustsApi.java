@@ -1,6 +1,7 @@
 package org.voiddog.pixiv.data.api;
 
-import org.voiddog.pixiv.data.model.RankingModel;
+import org.voiddog.pixiv.data.model.illusts.IllustsRankingModel;
+import org.voiddog.pixiv.domain.anno.Logined;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -16,19 +17,21 @@ import rx.Observable;
 public interface IllustsApi {
 
     @GET("v1/illust/recommended-nologin?include_ranking_label=true")
-    Observable<RankingModel> rankListWithoutLogin();
+    Observable<IllustsRankingModel> rankListWithoutLogin();
 
     @GET("v1/illust/recommended?content_type=illust&include_ranking_label=true")
-    Observable<RankingModel> rankList();
+    Observable<IllustsRankingModel> rankList();
 
     @GET
-    Observable<RankingModel> next(@Url String nextUrl);
+    Observable<IllustsRankingModel> next(@Url String nextUrl);
 
     @FormUrlEncoded
+    @Logined
     @POST("v1/illust/bookmark/add")
     Observable<Object> addBookMark(@Field("illust_id") String illustId, @Field("restrict") String restrict);
 
     @FormUrlEncoded
+    @Logined
     @POST("v1/illust/bookmark/delete")
     Observable<Object> deleteBookMark(@Field("illust_id") String illustId);
 }

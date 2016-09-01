@@ -6,6 +6,7 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig;
 
 import org.voiddog.lib.BaseApplication;
 import org.voiddog.lib.util.LogUtil;
+import org.voiddog.pixiv.domain.DataModel;
 import org.voiddog.pixiv.domain.interceptor.ReferHeaderIntercept;
 
 import okhttp3.OkHttpClient;
@@ -42,6 +43,7 @@ public class PixivApplication extends BaseApplication{
         // 初始化AppComponent
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
+                .dataModel(new DataModel(this))
                 .build();
     }
 

@@ -1,6 +1,8 @@
-package org.voiddog.pixiv.data.model;
+package org.voiddog.pixiv.data.model.illusts;
 
 import com.google.gson.annotations.SerializedName;
+
+import org.voiddog.pixiv.data.model.ImageUrlModel;
 
 /**
  * Created by qigengxin on 16/8/26.

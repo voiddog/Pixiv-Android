@@ -1,6 +1,10 @@
-package org.voiddog.pixiv.data.model;
+package org.voiddog.pixiv.data.model.illusts;
 
 import com.google.gson.annotations.SerializedName;
+
+import org.voiddog.pixiv.data.model.ImageUrlModel;
+import org.voiddog.pixiv.data.model.PageModel;
+import org.voiddog.pixiv.data.model.TagModel;
 
 import java.util.List;
 

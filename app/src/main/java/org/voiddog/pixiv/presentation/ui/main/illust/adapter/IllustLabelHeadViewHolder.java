@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.voiddog.pixiv.R;
-import org.voiddog.pixiv.data.model.LabelIllustModel;
+import org.voiddog.pixiv.data.model.illusts.LabelIllustModel;
 import org.voiddog.pixiv.presentation.ui.common.view.PixivDraweeView;
 
 import butterknife.BindView;

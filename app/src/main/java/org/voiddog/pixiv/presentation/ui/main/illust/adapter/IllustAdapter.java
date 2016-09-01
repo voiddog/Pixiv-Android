@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.voiddog.pixiv.R;
-import org.voiddog.pixiv.data.model.IllustsModel;
-import org.voiddog.pixiv.data.model.LabelIllustModel;
-import org.voiddog.pixiv.data.model.RankingModel;
+import org.voiddog.pixiv.data.model.illusts.IllustsRankingModel;
+import org.voiddog.pixiv.data.model.illusts.IllustsModel;
+import org.voiddog.pixiv.data.model.illusts.LabelIllustModel;
 import org.voiddog.pixiv.presentation.ui.common.fragment.lce.ILceDataHelper;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by qigengxin on 16/8/26.
  */
 public class IllustAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
-        implements ILceDataHelper<RankingModel>{
+        implements ILceDataHelper<IllustsRankingModel>{
     // 头部label插图
     private static final int TYPE_LABEL = 1;
     // item元素
@@ -76,7 +76,7 @@ public class IllustAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     @Override
-    public void addData(RankingModel data) {
+    public void addData(IllustsRankingModel data) {
         if(data.rankingLabelIllust != null){
             mDataList.add(data.rankingLabelIllust);
         }
@@ -87,7 +87,7 @@ public class IllustAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     }
 
     @Override
-    public void setData(RankingModel data) {
+    public void setData(IllustsRankingModel data) {
         mDataList.clear();
         if(data.rankingLabelIllust != null){
             mDataList.add(data.rankingLabelIllust);

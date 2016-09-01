@@ -1,6 +1,8 @@
-package org.voiddog.pixiv.data.model;
+package org.voiddog.pixiv.data.model.user;
 
 import com.google.gson.annotations.SerializedName;
+
+import org.voiddog.pixiv.data.model.ImageUrlModel;
 
 /**
  * 用户数据
@@ -19,4 +21,6 @@ public class UserModel {
     // 是否被我关注
     @SerializedName("is_followed")
     public boolean isFollowed;
+
+    public String comment;
 }

@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
 import org.voiddog.pixiv.data.api.IllustsApi;
-import org.voiddog.pixiv.data.model.RankingModel;
-import org.voiddog.pixiv.domain.ApiManager;
+import org.voiddog.pixiv.data.model.illusts.IllustsRankingModel;
+import org.voiddog.pixiv.domain.IDataCore;
 import org.voiddog.pixiv.presentation.ui.common.activity.base.ForActivity;
 import org.voiddog.pixiv.presentation.ui.common.fragment.base.FragmentScope;
 import org.voiddog.pixiv.presentation.ui.common.fragment.lce.ILceDataHelper;
@@ -34,9 +34,8 @@ public class IllustModule {
     }
 
     @Provides
-    @FragmentScope
-    IllustsApi provideIllustsApi(ApiManager helper){
-        return helper.getIllutsApi();
+    IllustsApi provideIllustsApi(IDataCore dataCore){
+        return dataCore.getIllustsApi();
     }
 
     @Provides
@@ -61,7 +60,7 @@ public class IllustModule {
 
     @Provides
     @FragmentScope
-    ILceDataHelper<RankingModel> provideLceDataHelper(IllustAdapter adapter){
+    ILceDataHelper<IllustsRankingModel> provideLceDataHelper(IllustAdapter adapter){
         return adapter;
     }
 

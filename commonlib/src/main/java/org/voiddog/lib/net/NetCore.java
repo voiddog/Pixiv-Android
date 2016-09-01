@@ -77,6 +77,10 @@ public class NetCore {
         return mOkHttpClient;
     }
 
+    public <T> T createApi(final Class<T> clazz){
+        return mRetrofit.create(clazz);
+    }
+
     /**
      * 默认信任所有的证书
      *

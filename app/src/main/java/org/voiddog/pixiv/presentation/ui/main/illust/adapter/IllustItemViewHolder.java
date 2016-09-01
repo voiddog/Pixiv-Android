@@ -5,7 +5,7 @@ import android.view.View;
 
 import org.greenrobot.eventbus.EventBus;
 import org.voiddog.pixiv.R;
-import org.voiddog.pixiv.data.model.IllustsModel;
+import org.voiddog.pixiv.data.model.illusts.IllustsModel;
 import org.voiddog.pixiv.presentation.ui.common.event.IllustsBookmarkEvent;
 import org.voiddog.pixiv.presentation.ui.common.view.LikeButton;
 import org.voiddog.pixiv.presentation.ui.common.view.PixivDraweeView;

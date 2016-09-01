@@ -8,14 +8,14 @@ import android.view.View;
 import org.voiddog.lib.ui.DrawableItemDecoration;
 import org.voiddog.lib.util.SizeUtil;
 import org.voiddog.pixiv.PixivApplication;
-import org.voiddog.pixiv.data.model.RankingModel;
+import org.voiddog.pixiv.data.model.illusts.IllustsRankingModel;
 import org.voiddog.pixiv.presentation.ui.common.fragment.lce.LceRecycleFragment;
 
 /**
  *
  * Created by qigengxin on 16/8/26.
  */
-public class IllustFragment extends LceRecycleFragment<RankingModel, IllustView, IllustPresenter>
+public class IllustFragment extends LceRecycleFragment<IllustsRankingModel, IllustView, IllustPresenter>
         implements IllustView{
 
     @Override

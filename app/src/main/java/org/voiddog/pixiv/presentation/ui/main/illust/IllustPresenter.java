@@ -7,8 +7,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.voiddog.lib.mvp.lce.MvpLceRxPresenter;
 import org.voiddog.pixiv.data.api.IllustsApi;
-import org.voiddog.pixiv.data.model.RankingModel;
-import org.voiddog.pixiv.domain.ApiManager;
+import org.voiddog.pixiv.data.model.illusts.IllustsRankingModel;
 import org.voiddog.pixiv.presentation.ui.common.activity.base.ForActivity;
 import org.voiddog.pixiv.presentation.ui.common.event.IllustsBookmarkEvent;
 
@@ -19,7 +18,7 @@ import rx.Observable;
 /**
  * Created by qigengxin on 16/8/26.
  */
-public class IllustPresenter extends MvpLceRxPresenter<RankingModel, IllustView>{
+public class IllustPresenter extends MvpLceRxPresenter<IllustsRankingModel, IllustView>{
 
     @Inject
     @ForActivity
@@ -36,6 +35,12 @@ public class IllustPresenter extends MvpLceRxPresenter<RankingModel, IllustView>
 
     @Subscribe
     public void onEvent(IllustsBookmarkEvent event){
+        if(event.isAdd) {
+            mApi.addBookMark(event.id, "public").subscribe();
+        }
+        else{
+            mApi.deleteBookMark(event.id).subscribe();
+        }
     }
 
     @Override
@@ -45,7 +50,7 @@ public class IllustPresenter extends MvpLceRxPresenter<RankingModel, IllustView>
     }
 
     public void loadData(boolean refresh){
-        Observable<RankingModel> request = null;
+        Observable<IllustsRankingModel> request = null;
         if(refresh){
             mNextUrl = null;
             request = mApi.rankListWithoutLogin();
@@ -61,7 +66,7 @@ public class IllustPresenter extends MvpLceRxPresenter<RankingModel, IllustView>
     }
 
     @Override
-    protected void onNext(RankingModel data, boolean pullToRefresh) {
+    protected void onNext(IllustsRankingModel data, boolean pullToRefresh) {
         if(!TextUtils.isEmpty(data.nextUrl)){
             mNextUrl = data.nextUrl;
         }
