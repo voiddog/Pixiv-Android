@@ -3,6 +3,9 @@ package org.voiddog.pixiv;
 import android.app.Application;
 import android.content.Context;
 
+import org.voiddog.pixiv.domain.DataCoreImpl;
+import org.voiddog.pixiv.domain.IDataCore;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -24,5 +27,11 @@ public class AppModule {
     @Singleton
     public Context provideContext(){
         return mApplication;
+    }
+
+    @Provides
+    @Singleton
+    public IDataCore provideDataCore(Context context){
+        return new DataCoreImpl(context);
     }
 }
