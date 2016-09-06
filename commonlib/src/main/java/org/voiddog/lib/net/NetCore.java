@@ -7,8 +7,8 @@ import org.voiddog.lib.net.intercept.LoggerIntercept;
 import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.HostnameVerifier;
@@ -32,6 +32,7 @@ public class NetCore {
 
     Retrofit mRetrofit;
     OkHttpClient mOkHttpClient;
+    Map<Class, Object> mServiceCache = new ConcurrentHashMap<>();
 
     public NetCore(NetConfiguration configuration){
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
@@ -78,7 +79,12 @@ public class NetCore {
     }
 
     public <T> T createApi(final Class<T> clazz){
-        return mRetrofit.create(clazz);
+        Object o = mServiceCache.get(clazz);
+        if(o == null){
+            o = mRetrofit.create(clazz);
+            mServiceCache.put(clazz, o);
+        }
+        return (T) o;
     }
 
     /**

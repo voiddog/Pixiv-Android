@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.voiddog.lib.mvp.lce.MvpLceRxPresenter;
+import org.voiddog.lib.util.LogUtil;
 import org.voiddog.pixiv.data.api.IllustsApi;
 import org.voiddog.pixiv.data.model.illusts.IllustsRankingModel;
 import org.voiddog.pixiv.presentation.ui.common.activity.base.ForActivity;
@@ -14,6 +15,8 @@ import org.voiddog.pixiv.presentation.ui.common.event.IllustsBookmarkEvent;
 import javax.inject.Inject;
 
 import rx.Observable;
+import rx.Subscriber;
+import rx.functions.Action1;
 
 /**
  * Created by qigengxin on 16/8/26.
@@ -36,10 +39,16 @@ public class IllustPresenter extends MvpLceRxPresenter<IllustsRankingModel, Illu
     @Subscribe
     public void onEvent(IllustsBookmarkEvent event){
         if(event.isAdd) {
-            mApi.addBookMark(event.id, "public").subscribe();
+            mApi.addBookMark(event.id, "public").subscribe(new Action1<Object>() {
+                @Override
+                public void call(Object o) {}
+            });
         }
         else{
-            mApi.deleteBookMark(event.id).subscribe();
+            mApi.deleteBookMark(event.id).subscribe(new Action1<Object>() {
+                @Override
+                public void call(Object o) {}
+            });
         }
     }
 

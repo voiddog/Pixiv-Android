@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/space_50"
+    android:paddingTop="@dimen/space_100"
+    android:paddingBottom="@dimen/space_50"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <org.voiddog.lib.ui.ResizeDraweeView
+        android:id="@+id/dv_user_head"
+        app:roundAsCircle="true"
+        android:layout_gravity="center_vertical"
+        app:placeholderImage="@color/draweePlaceHolder"
+        android:layout_width="@dimen/navigation_head_size"
+        android:layout_height="@dimen/navigation_head_size" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:text="未登录"
+        android:layout_marginLeft="@dimen/space_70"
+        android:textSize="@dimen/font_34"
+        android:textColor="@android:color/white"
+        style="@style/TextShadowStyle"
+        android:layout_gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

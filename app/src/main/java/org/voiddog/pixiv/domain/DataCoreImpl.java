@@ -5,7 +5,9 @@ import android.content.Context;
 import org.voiddog.lib.net.NetConfiguration;
 import org.voiddog.lib.net.NetCore;
 import org.voiddog.pixiv.data.api.IllustsApi;
+import org.voiddog.pixiv.data.api.UserApi;
 import org.voiddog.pixiv.data.model.user.AccountModel;
+import org.voiddog.pixiv.data.request.AccessTokenRequest;
 import org.voiddog.pixiv.domain.anno.Logined;
 import org.voiddog.pixiv.domain.interceptor.LoginHeaderInterceptor;
 import org.voiddog.pixiv.domain.manager.AccountManager;
@@ -15,33 +17,33 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import rx.Observable;
 import rx.Subscriber;
+import rx.functions.Func1;
 
 /**
  * 数据层管理核心
  * Created by qigengxin on 16/9/1.
  */
 public class DataCoreImpl implements IDataCore {
+    private static final String APP_HOST = "https://app-api.pixiv.net";
 
     AccountManager accountManager;
     BookmarkManager bookmarkManager;
     PixivNetCore mNetCore;
-    Map<Class, Object> mApiCache = new HashMap<>();
 
     public DataCoreImpl(Context context) {
         accountManager = new AccountManager(context);
         bookmarkManager = new BookmarkManager(context);
 
-        NetConfiguration.Builder builder = NetConfiguration.newBuilder();
-        builder.setHost("https://app-api.pixiv.net");
-        if(accountManager.isLogin()){
-            builder.addExInterceptor(new LoginHeaderInterceptor(accountManager.getAccountModel().accessToken));
+        createNetworkCore();
+        if(isLogin()){
+            uploadAddedBookmark();
         }
-        mNetCore = new PixivNetCore(builder.build());
     }
 
     @Override
@@ -52,21 +54,43 @@ public class DataCoreImpl implements IDataCore {
     @Override
     public void login(AccountModel accountModel) {
         accountManager.login(accountModel);
+        createNetworkCore();
+        uploadAddedBookmark();
     }
 
     @Override
     public void logout() {
         accountManager.logout();
+        createNetworkCore();
     }
 
     @Override
     public IllustsApi getIllustsApi() {
-        Object ret = mApiCache.get(IllustsApi.class);
-        if(ret == null){
-            ret = mNetCore.createApi(IllustsApi.class);
-            mApiCache.put(IllustsApi.class, ret);
+        return mNetCore.createApi(IllustsApi.class);
+    }
+
+    private void createNetworkCore(){
+        NetConfiguration.Builder builder = NetConfiguration.newBuilder();
+        builder.setHost(APP_HOST);
+        if(accountManager.isLogin()){
+            builder.addExInterceptor(new LoginHeaderInterceptor(accountManager.getAccountModel().accessToken));
         }
-        return (IllustsApi) ret;
+        mNetCore = new PixivNetCore(builder.build());
+    }
+
+    private void uploadAddedBookmark(){
+        List<String> addedBookmark = bookmarkManager.getAddedIllusts();
+        Observable.from(addedBookmark)
+                .flatMap(new Func1<String, Observable<Object>>() {
+                    @Override
+                    public Observable<Object> call(String s) {
+                        return mNetCore.createApi(IllustsApi.class).addBookMark(
+                                s, "public"
+                        );
+                    }
+                })
+                .subscribe();
+        bookmarkManager.cleanIllustsBookmark();
     }
 
     class PixivNetCore extends NetCore {
@@ -87,7 +111,12 @@ public class DataCoreImpl implements IDataCore {
                     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                         Logined logined = method.getAnnotation(Logined.class);
                         if(logined != null && !isLogin()){
-                            processNotLogin(method, args);
+                            return processNotLogin(method, args);
+                        }
+                        else if(logined != null
+                                && accountManager.getAccountModel().isOutOfData()){
+                            return processRefreshToken(accountManager.getAccountModel().refreshToken
+                                    , (Observable) method.invoke(realProxy, args));
                         }
                         return method.invoke(realProxy, args);
                     }
@@ -109,6 +138,21 @@ public class DataCoreImpl implements IDataCore {
                 return getCompleteOvservable();
             }
             return getErrorOvserable();
+        }
+
+        Observable processRefreshToken(String refreshToken, final Observable realObserver){
+            UserApi userApi = super.createApi(UserApi.class);
+            AccessTokenRequest request = new AccessTokenRequest();
+            request.grantType = AccessTokenRequest.REFRESH_TOKEN_TYPE;
+            request.refreshToken = refreshToken;
+            return userApi.getAccessToken(request)
+                    .flatMap(new Func1<AccountModel, Observable<?>>() {
+                        @Override
+                        public Observable<?> call(AccountModel accountModel) {
+                            accountManager.updateAccount(accountModel);
+                            return realObserver;
+                        }
+                    });
         }
 
         Observable getCompleteOvservable(){

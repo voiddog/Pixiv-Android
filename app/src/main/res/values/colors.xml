@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#1976D2</color>
     <color name="colorAccent">#03A9F4</color>
 
+    <color name="window_bg_color">#efefef</color>
     <color name="draweePlaceHolder">#ddd</color>
 
     <color name="main_tab_txt_normal">#094692</color>

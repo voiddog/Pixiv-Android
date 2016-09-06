@@ -41,4 +41,7 @@
     <dimen name="space_8">4dp</dimen>
     <dimen name="space_6">3dp</dimen>
 
+    <!--navigation-->
+    <dimen name="navigation_head_size">65dp</dimen>
+
 </resources>
