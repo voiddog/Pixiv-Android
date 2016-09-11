@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <org.voiddog.lib.ui.ResizeDraweeView
+        android:id="@+id/dv_fist"
+        app:actualImageScaleType="centerCrop"
+        app:placeholderImage="@color/dl_is_no_img"
+        android:layout_width="70dp"
+        android:layout_height="70dp" />
+
+    <TextView
+        android:id="@+id/tv_album_name"
+        android:gravity="center_vertical"
+        android:padding="15dp"
+        android:layout_alignTop="@id/dv_fist"
+        android:layout_alignBottom="@id/dv_fist"
+        android:layout_toRightOf="@id/dv_fist"
+        android:text="Album(3)"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

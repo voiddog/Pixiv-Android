@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dl_is_crop_bg">#eee</color>
+    <color name="dl_is_no_img">#ddd</color>
+    <color name="dl_is_select_img">#aaffffff</color>
+</resources>

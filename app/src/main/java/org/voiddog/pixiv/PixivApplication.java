@@ -36,6 +36,7 @@ public class PixivApplication extends BaseApplication{
                 .build();
         ImagePipelineConfig config = OkHttpImagePipelineConfigFactory
                 .newBuilder(this, okHttpClient)
+                .setDownsampleEnabled(true)
                 .build();
         Fresco.initialize(this, config);
 

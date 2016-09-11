@@ -1,12 +1,10 @@
-apply plugin: 'com.android.application'
-apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
     defaultConfig {
-        applicationId "org.voiddog.pixiv"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
@@ -23,17 +21,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:design:24.2.0'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile project(':commonlib')
-    compile project(':image-selector')
-    compile 'com.android.support:design:24.2.0'
-
-    compile 'com.google.dagger:dagger:2.5'
-    apt 'com.google.dagger:dagger-compiler:2.5'
-
-    compile 'com.jakewharton:butterknife:8.3.0'
-    apt 'com.jakewharton:butterknife-compiler:8.3.0'
-    compile "com.facebook.fresco:imagepipeline-okhttp3:0.13.0"
-
-    compile 'org.greenrobot:eventbus:3.0.0'
 }

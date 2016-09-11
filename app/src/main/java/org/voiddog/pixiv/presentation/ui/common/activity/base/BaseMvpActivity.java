@@ -1,14 +1,22 @@
 package org.voiddog.pixiv.presentation.ui.common.activity.base;
 
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
+import org.voiddog.imageselector.ui.SelectAndSquareCropActivity;
+import org.voiddog.imageselector.ui.SelectImgActivity;
 import org.voiddog.lib.mvp.MvpActivity;
 import org.voiddog.lib.ui.BlurView;
 import org.voiddog.pixiv.R;
@@ -40,7 +48,6 @@ public abstract class BaseMvpActivity<V extends BaseActivityMvpView, P extends B
 
         public ViewHolder(ViewGroup rootView){
             // 插进去
-
             ViewGroup vp = (ViewGroup) getWindow().getDecorView();
             View subView = vp.getChildAt(0);
             subView.setBackgroundResource(R.color.window_bg_color);
@@ -62,7 +69,7 @@ public abstract class BaseMvpActivity<V extends BaseActivityMvpView, P extends B
             ButterKnife.bind(this, rootView);
             rootView.removeView(headView);
             nvUser.addHeaderView(headView);
-            nvUser.setBackgroundColor(0x88ffffff);
+            nvUser.setBackgroundColor(0xaaffffff);
 
             drawerLayout.addDrawerListener(new DrawerLayout.DrawerListener() {
                 @Override
@@ -86,6 +93,22 @@ public abstract class BaseMvpActivity<V extends BaseActivityMvpView, P extends B
                 @Override
                 public void onDrawerStateChanged(int newState) {}
             });
+
+            // 修改状态栏
+            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+                LinearLayout ll = (LinearLayout) subView;
+                ll.addView(createStatusBg(
+                        getResources().getColor(R.color.colorPrimary)
+                ), 0);
+            }
+
+            dvUserHead.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(BaseMvpActivity.this, SelectAndSquareCropActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
     }
 
@@ -99,5 +122,20 @@ public abstract class BaseMvpActivity<V extends BaseActivityMvpView, P extends B
         mViewHolder = new ViewHolder(navView);
     }
 
+    View createStatusBg(int color){
+        ImageView iv = new ImageView(this);
+        iv.setImageDrawable(new ColorDrawable(color));
+        iv.setLayoutParams(new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight()
+        ));
+        return iv;
+    }
+    /**
+     * 获得状态栏高度
+     */
+    protected int getStatusBarHeight() {
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        return getResources().getDimensionPixelSize(resourceId);
+    }
 
 }

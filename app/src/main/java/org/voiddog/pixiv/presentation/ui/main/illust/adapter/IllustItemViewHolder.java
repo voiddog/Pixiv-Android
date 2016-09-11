@@ -1,7 +1,9 @@
 package org.voiddog.pixiv.presentation.ui.main.illust.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.view.ViewGroup;
 
 import org.greenrobot.eventbus.EventBus;
 import org.voiddog.pixiv.R;
@@ -44,7 +46,8 @@ public class IllustItemViewHolder extends RecyclerView.ViewHolder{
 
     public void bindData(IllustsModel model){
         mModel = model;
-        mDvImg.setAspectRatio(1.0f * model.width / model.height);
+        float ratio = 1.0f * model.width / model.height;
+        mDvImg.setAspectRatio(ratio);
         mDvImg.applyImageUrlModel(model.imageUrls);
         mLikeBtn.setLikeState(model.isBookmarked);
     }

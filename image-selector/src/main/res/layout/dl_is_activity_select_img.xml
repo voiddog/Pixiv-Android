@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.SelectImgActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tool_bar"
+            app:navigationIcon="@drawable/ic_highlight_off_black_24dp"
+            android:layout_width="match_parent"
+            app:layout_scrollFlags="scroll|snap|enterAlways"
+            android:background="@android:color/white"
+            android:layout_height="?attr/actionBarSize">
+
+            <TextView
+                android:id="@+id/dl_is_tv_folder"
+                android:text="图库"
+                android:textSize="18sp"
+                android:layout_gravity="start"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/ic_arrow_drop_down_black_18dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/dl_is_tv_continue"
+                android:text="继续"
+                android:layout_marginRight="16dp"
+                android:textSize="18sp"
+                android:layout_gravity="end"
+                android:textColor="@color/google_blue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/dl_is_rv_img"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</android.support.design.widget.CoordinatorLayout>

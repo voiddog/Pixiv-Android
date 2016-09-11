@@ -62,6 +62,46 @@ public class ViewUtil {
     }
 
     /**
+     * 获取到距离窗口左侧的偏移量
+     * @param view
+     * @return
+     */
+    public static int getRawX(View view){
+        int res = 0;
+        while(view != null
+                && view.getId() != android.R.id.content){
+            res += view.getX();
+            if(view.getParent() instanceof View) {
+                view = (View) view.getParent();
+            }
+            else{
+                break;
+            }
+        }
+        return res;
+    }
+
+    /**
+     * 获取到距离窗口顶部的偏移量
+     * @param view
+     * @return
+     */
+    public static int getRawY(View view){
+        int res = 0;
+        while(view != null
+                && view.getId() != android.R.id.content){
+            res += view.getY();
+            if(view.getParent() instanceof View) {
+                view = (View) view.getParent();
+            }
+            else{
+                break;
+            }
+        }
+        return res;
+    }
+
+    /**
      * 通过反射获取imageview的某个属性值
      *
      * @param object
