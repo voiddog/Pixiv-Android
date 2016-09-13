@@ -271,11 +271,10 @@ public class CropDrawee extends View{
         if(originRect.right - originRect.left > 0
                 && originRect.bottom - originRect.top > 0) {
             int width = Math.round(originWidth * 1.0f / inSampleSize);
-            int height = Math.round(originHeight * 1.0f / inSampleSize);
-            originRect.left = Math.round(originRect.left * 1.0f * width / (right - left));
-            originRect.top = Math.round(originRect.top * 1.0f * height / (bottom - top));
-            originRect.right = Math.round(originRect.right * 1.0f * width / (right - left));
-            originRect.bottom = Math.round(originRect.bottom * 1.0f * height / (bottom - top));
+            originRect.left = Math.round(originRect.left * 1.0f * originWidth / (right - left));
+            originRect.top = Math.round(originRect.top * 1.0f * originHeight / (bottom - top));
+            originRect.right = Math.round(originRect.right * 1.0f * originWidth / (right - left));
+            originRect.bottom = Math.round(originRect.bottom * 1.0f * originHeight / (bottom - top));
 
             originOptions.inSampleSize = inSampleSize;
             originBitmap = decoder.decodeRegion(originRect, originOptions);
