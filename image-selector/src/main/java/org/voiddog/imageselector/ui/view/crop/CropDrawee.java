@@ -250,6 +250,11 @@ public class CropDrawee extends View{
      * 更新显示区域中的原图
      */
     void updateOrigin(){
+        if(smallBitmap == null){
+            // 没有数据
+            return;
+        }
+
         tmpMatrix.set(baseMatrix);
         tmpMatrix.postConcat(scaleMatrix);
         tmpMatrix.postConcat(moveMatrix);

@@ -146,7 +146,7 @@ public class SelectImgAdapter extends RecyclerView.Adapter<SelectImgViewHolder>{
 
     @Override
     public int getItemCount() {
-        return imgFilePathList.size();
+        return imgFilePathList == null ? 0 :imgFilePathList.size();
     }
 
     public void setOnSelectChangedListener(OnSelectChangedListener changedListener){

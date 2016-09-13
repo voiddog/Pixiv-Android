@@ -33,7 +33,7 @@ public class SelectAndSquareCropActivity extends SelectImgActivity{
 
     @Override
     public void showImages(String title, List<String> imagePath) {
-        if(imagePath.size() > 0) {
+        if(imagePath != null && imagePath.size() > 0) {
             selectImageAdapter.select(imagePath.get(0));
             dvHead.setImageURI(StringUtil.getUriFromFilePath(imagePath.get(0)));
         }
